@@ -21,6 +21,17 @@ public class Movie {
     @Column(length = 2048, name = "description")
     private String description;
 
+    @Column(length= 524, name="recommendation")
+    private String recommendation;
+
+    public String getRecommendation() {
+        return recommendation;
+    }
+
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
+    }
+
     public Movie() {
     }
 

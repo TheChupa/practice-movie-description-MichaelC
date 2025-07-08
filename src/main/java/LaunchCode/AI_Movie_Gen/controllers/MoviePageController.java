@@ -32,6 +32,8 @@ public class MoviePageController {
         return "movieForm";
 
     }
+
+
 //This is where the movie is saved.
     @PostMapping("add")
     public String saveMovie(@ModelAttribute("movie") Movie movie, Model model) {
@@ -40,7 +42,10 @@ public class MoviePageController {
         try {
             Client client = new Client();
             GenerateContentResponse response = client.models.generateContent("gemini-2.0-flash-001", "Get description of: " + movie.getTitle() + ". This will be a movie. Make it under 2048 characters in length. No Spoilers please, if you can.", null);
+            GenerateContentResponse recommendation = client.models.generateContent("gemini-2.0-flash-001", "Recommend a movie based off of " + movie.getTitle() + ". The user gave it a " + movie.getRating()  + " out of 10. Tailer your recommendations based off this rating. Limit 200 characters", null);
+
             movie.setDescription(response.text());
+            movie.setRecommendation(recommendation.text());
         } catch (Exception e) {
             movie.setDescription("AI overlord is tired, ask later");
         }
@@ -48,6 +53,9 @@ public class MoviePageController {
         model.addAttribute("success", true);
         return "movieForm";
     }
+
+
+
 
     @PostMapping("/delete/{id}")
     public String deleteMovie(@PathVariable int id) {

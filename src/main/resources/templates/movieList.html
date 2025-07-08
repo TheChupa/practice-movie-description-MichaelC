@@ -13,7 +13,9 @@
         <th style="border: 1px solid black; padding: 8px;">Title</th>
         <th style="border: 1px solid black; padding: 8px;">Rating</th>
         <th style="border: 1px solid black; padding: 8px;">Description</th>
+        <th style="border: 1px solid black; padding: 8px;">AI Recommendation</th>
         <th style="border: 1px solid black; padding: 8px;">Delete</th>
+
     </tr>
     </thead>
 
@@ -24,6 +26,7 @@
         <td style="border: 1px solid black; padding: 8px;" th:text="${movie.title}"></td>
         <td style="border: 1px solid black; padding: 8px;" th:text="${movie.rating}"></td>
         <td style="border: 1px solid black; padding: 8px;" th:text="${movie.description}"></td>
+        <td style="border: 1px solid black; padding: 8px;" th:text="${movie.recommendation}"></td>
 
        <!-- this part is special, because I wanted a button to delete the movies. It deletes by ID,
         but only because the entire entry is shown in the table, this maps to the DeleteMapping -->
@@ -33,6 +36,8 @@
                 <button type="submit">Delete</button>
             </form>
         </td>
+
+
     </tr>
     </tbody>
 </table>
