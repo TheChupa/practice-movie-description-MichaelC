@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Movies</title>
+</head>
+<body>
+
+<h1>Movies</h1>
+
+<table style="border: 3px solid black; border-collapse: collapse;">
+    <thead>
+    <tr>
+        <th style="border: 1px solid black; padding: 8px;">Title</th>
+        <th style="border: 1px solid black; padding: 8px;">Rating</th>
+        <th style="border: 1px solid black; padding: 8px;">Description</th>
+        <th style="border: 1px solid black; padding: 8px;">Delete</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <!-- th:each is a for loop in Thymeleaf, this is a for every movies in movies.
+     This is ${movies} because that is what I named the attribute in the MoviePageController, if called something else in the controller, it must match.  -->
+    <tr th:each="movie : ${movies}">
+        <td style="border: 1px solid black; padding: 8px;" th:text="${movie.title}"></td>
+        <td style="border: 1px solid black; padding: 8px;" th:text="${movie.rating}"></td>
+        <td style="border: 1px solid black; padding: 8px;" th:text="${movie.description}"></td>
+
+       <!-- this part is special, because I wanted a button to delete the movies. It deletes by ID,
+        but only because the entire entry is shown in the table, this maps to the DeleteMapping -->
+        <td style="border: 1px solid black; padding: 8px;">
+            <form th:action="@{/movies/delete/{id}(id=${movie.id})}" method="post"
+                  onsubmit="return confirm('Are you sure you want to delete this movie? The AI will be sad.');">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/movies/new">Add New Movie</a>
+
+</body>
+</html>
