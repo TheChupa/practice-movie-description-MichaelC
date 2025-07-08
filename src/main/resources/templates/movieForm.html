@@ -12,7 +12,7 @@
 
 <!-- could easily have made this form and just pointed this data at the REST API Controller where we were doing Postman queries -->
 
-<form th:action="@{/movies/save}" th:object="${movie}" method="post">
+<form th:action="@{/movies/add}" th:object="${movie}" method="post">
 
     <!-- this is for the title, we use the * because we are modifying the entire entry, we would use movie.title if we wanted to just modify the title-->
     <label for="title">Title:</label>
@@ -30,7 +30,7 @@
     <p style="color: orange;">AI description generated!</p>
 </div>
 <br><br>
-<a href="/movies/new"> Add Another Movie</a>
+<a href="/movies/form"> Add Another Movie</a>
 
 <br><br>
 <a href="/">Back to Home</a>

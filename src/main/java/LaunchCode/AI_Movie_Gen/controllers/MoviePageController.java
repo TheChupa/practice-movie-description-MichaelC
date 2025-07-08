@@ -26,14 +26,14 @@ public class MoviePageController {
     }
 
 //Makes the new Model a movie which maps to the Movie class, the form points to the PostMapping to save it.
-    @GetMapping("/new")
+    @GetMapping("/form")
     public String showMovieForm(Model model) {
         model.addAttribute("movie", new Movie());
         return "movieForm";
 
     }
 //This is where the movie is saved.
-    @PostMapping("save")
+    @PostMapping("add")
     public String saveMovie(@ModelAttribute("movie") Movie movie, Model model) {
 
         //This is the AI response, if the AI is down it will catch the error and then fill in the default AI overlord is tired
